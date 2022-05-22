@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Sign up</h1>
+        <form method="POST" action="/signup">
+
+            <div class="input-group flex-nowrap w-50">
+                <input type="text" class="form-control" placeholder="Username" name="email" aria-label="Username" aria-describedby="addon-wrapping">
+            </div>
+
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <input type="text" class="form-control" placeholder="Name" name="name" aria-label="Name" aria-describedby="addon-wrapping">
+            </div>
+
+            <div class="input-group mt-2 flex-nowrap w-50">
+                <input type="password" class="form-control" placeholder="Password" name="password" id="inputPassword">
+            </div>
+
+            <div class="input-group mt-2 flex-nowrap w-50">
+                <input type="password" class="form-control" placeholder="Retype Password" name="confirm_password" id="inputPassword">
+            </div>
+
+            <button class="btn btn-outline-secondary mt-2">Sign Up</button>
+
+        </form>
+{% endblock %}
