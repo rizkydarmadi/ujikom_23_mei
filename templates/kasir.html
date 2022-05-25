@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Data Kasir</h1>
+        <form method="POST" action="/kasir">
+
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+                <input type="text" class="form-control" placeholder="Kode Kasir" name="kode_kasir" aria-label="no_anggota" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+                <input type="text" class="form-control" placeholder="Nama Kasir" name="nama_kasir" aria-label="nama_anggota" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group mt-2 flex-nowrap w-50">
+              <!-- <span class="input-group-text" id="addon-wrapping">Pass</span> -->
+              <input type="password" class="form-control" placeholder="Password" name="password_kasir" id="inputPassword">
+          </div>
+            
+
+            <button class="btn btn-outline-secondary mt-2">input</button>
+
+        </form>
+
+        <br>
+        <br>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No Kasir</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in kasir %}
+              <tr>
+                <!-- <td>{{ item.counter }}</td> -->
+                <td>{{item.kode_kasir}}</td>
+                <td>{{item.nama_kasir}}</td>
+                <td>
+                  <a class="btn btn-outline-secondary" href="kasir/edit/{{item.kode_kasir}}" role="button">edit</a>
+                  <a class="btn btn-outline-secondary" href="kasir/hapus/{{item.kode_kasir}}" role="button">hapus</a>
+                </td>
+              </tr>
+              {% endfor %}  
+{% endblock %}

@@ -7,7 +7,7 @@ main = Blueprint('main',__name__)
 @main.route('/')
 @login_required
 def index():
-	return render_template('index.html')
+	return render_template('anggota.html')
 
 app = create_app()
 if __name__ == '__main__':

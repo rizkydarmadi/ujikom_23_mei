@@ -8,7 +8,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3308/test_db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3308/simpan_pinjam'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
@@ -23,6 +23,14 @@ def create_app():
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+    from .anggota import anggota as anggota_blueprint
+    app.register_blueprint(anggota_blueprint)
+    from .kasir import kasir as kasir_blueprint
+    app.register_blueprint(kasir_blueprint)
+    from .simpan import simpan as simpan_blueprint
+    app.register_blueprint(simpan_blueprint)
+    from .pinjam import pinjam as pinjam_blueprint
+    app.register_blueprint(pinjam_blueprint)
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     return app

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Data Pinjam</h1>
+        <form method="POST" action="/pinjam">
+
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+                <input type="text" class="form-control" placeholder="No pinjam" name="no_pinjam" aria-label="no_pinjam" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+                <input type="text" class="form-control" placeholder="No Anggota" name="no_anggota" aria-label="No Anggota" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group flex-nowrap mt-2 w-50">
+              <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+              <input type="text" class="form-control" placeholder="Jumlah pinjam" name="jumlah_pinjam" aria-label="Jumlah pinjam" aria-describedby="addon-wrapping">
+          </div>
+          
+            
+
+            <button class="btn btn-outline-secondary mt-2">input</button>
+
+        </form>
+
+        <br>
+        <br>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No pinjam</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">No Anggota</th>
+                <th scope="col">Jml pinjam</th>
+                <th scope="col">Kode Kasir</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in pinjam %}
+              <tr>
+                <!-- <td>{{ item.counter }}</td> -->
+                <td>{{item.no_pinjam}}</td>
+                <td>{{item.tanggal}}</td>
+                <td>{{item.no_anggota}}</td>
+                <td>{{item.jml_pinjam}}</td>
+                <td>{{item.kode_kasir}}</td>
+
+                <td>
+                  <a class="btn btn-outline-secondary" href="pinjam/edit/{{item.no_pinjam}}" role="button">edit</a>
+                  <a class="btn btn-outline-secondary" href="pinjam/hapus/{{item.no_pinjam}}" role="button">hapus</a>
+                </td>
+              </tr>
+              {% endfor %}  
+{% endblock %}

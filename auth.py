@@ -1,11 +1,16 @@
 from flask import Blueprint,request,render_template,redirect,url_for,flash
-from .models import User
+from .models import User,TBLAnggota
 from werkzeug.security import generate_password_hash, check_password_hash
 from .__init__ import db
-from flask_login import login_user
-
+from flask_login import login_user, logout_user, login_required
 
 auth = Blueprint('auth', __name__)
+
+i = 0
+def mydefault():
+    global i
+    i += 1
+    return i
 
 @auth.route('/login', methods=['GET','POST'])
 def login():
@@ -33,6 +38,7 @@ def signup():
         email = request.form.get('email')
         name = request.form.get('name')
         password = request.form.get('password')
+        no_anggota = request.form.get('no_anggota')
         confirm_password = request.form.get('confirm_password')
 
         if password != confirm_password:
@@ -43,11 +49,19 @@ def signup():
         if user:
             flash('Email address already exists')
             return redirect(url_for('auth.signup'))
+
+        new_anggota = TBLAnggota(nama=name)
+        db.session.add(new_anggota)
+        db.session.commit()
         
-        new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+        new_user = User(email=email, password=generate_password_hash(password, method='sha256'),no_anggota=int(no_anggota))
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('auth.login'))
+        
+        return redirect(url_for('auth.login'))    
 
-    
-
+@auth.route('/logout') # define logout path
+@login_required
+def logout(): #define the logout function
+    logout_user()
+    return redirect(url_for('main.index'))

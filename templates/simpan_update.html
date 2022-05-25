@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Update Simpanan</h1>
+        <form method="POST">
+
+            <div class="input-group flex-nowrap mt-2 w-50">
+                <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+                <input type="text" class="form-control" placeholder="No Anggota" name="no_anggota" aria-label="No Anggota" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group flex-nowrap mt-2 w-50">
+              <!-- <span class="input-group-text" id="addon-wrapping">User</span> -->
+              <input type="text" class="form-control" placeholder="Jumlah Simpan" name="jumlah_simpan" aria-label="Jumlah Simpan" aria-describedby="addon-wrapping">
+          </div>
+          
+            
+
+            <button class="btn btn-outline-secondary mt-2">Change</button>
+
+        </form>
+
+        <br>
+        <br>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No simpan</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">No Anggota</th>
+                <th scope="col">Jml Simpan</th>
+                <th scope="col">Kode Kasir</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in simpan %}
+              <tr>
+                <!-- <td>{{ item.counter }}</td> -->
+                <td>{{item.no_simpan}}</td>
+                <td>{{item.tanggal}}</td>
+                <td>{{item.no_anggota}}</td>
+                <td>{{item.jml_simpan}}</td>
+                <td>{{item.kode_kasir}}</td>
+
+                <td>
+                  <a class="btn btn-outline-secondary" href="kasir/edit/{{item.kode_kasir}}" role="button">edit</a>
+                  <a class="btn btn-outline-secondary" href="kasir/hapus/{{item.kode_kasir}}" role="button">hapus</a>
+                </td>
+              </tr>
+              {% endfor %}  
+{% endblock %}
